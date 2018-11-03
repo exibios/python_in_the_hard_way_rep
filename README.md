@@ -1,2 +1,1 @@
-# python_in_the_hard_way_rep
-Repositorio para llevar a cabo los ejercicios necesarios en ese libro
+Hello Humans, this is the start of the end
