@@ -10,3 +10,4 @@ print "Your third varible is:", third
 ## Correr en terminarl o pasar argumentos al script que ejecuta en pycharm
 
 x = raw_input("How many varibles did you sent?")
+# Test
