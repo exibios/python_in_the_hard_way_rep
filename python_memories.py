@@ -86,6 +86,7 @@ list("string") this a function wich is not only for strings, this will create a 
 "string".rstrip()       # same as lstrip, remember that relpace every character, not the phrase
         print("cisco.com".rstrip(".com")) -> cis
 "string".split("split_string")      # string will be splited by space "" if "split_string" not supplied, this it will retirn a list of elements splited by the "split_string", if the "split_string" is not in the string a list with "string" will be returned (1 element)
+"text".splitlines()          # The splitlines method strips a trailing newline from the end of the string (if there is one) and it'll split on any line ending (\r\n, \n, or \r).
 "string".startswith("start_string")     # this will return TRUE if "start_string" is in the begining of "string"
 "string".strip("toStrip")       # lstrip and rstrip combined
         print("[" + "   aleph   ".strip().strip("pah") + "]") returns [le]
@@ -121,6 +122,10 @@ not (p or q) == (not p) and (not q) #La negación de una disyunción es la conju
 ###############
 #### LOOPS ####
 
+In Python, try to use for loops instead of while loops when possible.
+Python's for loops support a break statement. Often there's a better way to write your code than using break in a loop.
+in, any, all, next, list(takewhile(bool, items))  (-> itertools.takewhile <-)
+
 break    # it will exit the loop completely
 continue # it will jump to the next item in the loop
 pass     # its a empty placeholder, to write minimal code
@@ -143,6 +148,19 @@ x = str(int(float(input("Dame"))))
 
 from sys import argv
 script, first, second, third = argv ## how you call it in terminal: python python_file.py(script), first, second, third
+#############################
+#### Basic Argument Call ####
+
+def parse_args():
+    parser = ArgumentParser()
+    parser.add_argument("stop", type=int)
+    return parser.parse_args()
+
+def main():
+    args = parse_args()
+
+if __name__ == "__main__":
+    main()
 
 #############
 ### Files ###
@@ -219,6 +237,22 @@ print("Print #5:", my_list_2)
 >> Print #4: [3]
 >> Print #5: [3]
 
+#############################
+#### Recursive Functions ####
+https://www.pythonmorsels.com/what-is-recursion/
+Most of the places where recursion could be use, it shouldn't be used. Most possible uses for recursion would be easier to understand as a loop.
+Recursion is most often useful when the problem you're solving involves traversing or constructing a tree-like structure.
+
+# check recursive limit
+import sys
+sys.getrecursionlimit()
+
+#############################
+#### Function Decorators ####
+https://www.pythonmorsels.com/make-decorator/
+
+
+
 
 ####################################
 ####### Precedence of operators ####
@@ -255,10 +289,25 @@ print ("Hola","John,",var,sep="\n",end="@")             # use \n as the word joi
 #################
 ### Variables ###
 
+All variables in Python are actually pointers. **Variables point to objects, they don't contain objects: they aren't buckets containing objects
+The takeaway here is that just as variables in Python are pointers, data structures in Python contain pointers. You can't "contain" an object inside another object in Python, you can really only point to an object. You can only reference objects in Python. Lists, tuples, dictionaries, and all other data structures contain pointers.
+
 variable_1 = 1
 variable_2 = 2
 
 variable_1, variable_2 = variable_2, variable_1                 # interchange variables values without an auxiliar variable
+
+#############################
+#### Variable Assignment ####
+There are multiple ways to assign to a variable:
+
+assignment statements: this is the most obvious one @ A = B 
+for loops: the part between for and the in does an assignment @ for k, new[k] in old.items()
+walrus operators: walrus operators assign to a variable ??
+arguments: function arguments are passed in Python via assignments @ fun_test(x), fun_test is called x is assigned
+definitions of functions & classes: def and class assign to a variable ??
+import statements: all import statements assign to at least one variable ??
+
 
 #############
 ## LISTS ####
@@ -700,6 +749,24 @@ hasattr(class_or_object,"attribute")                 # this will check if an att
 
 getattr(obj,name)               # gets the value of an attribute
 setattr(obj,name,value)                 # change the value of an attibute
+
+#############################################
+#### properties decorator setter getters ####
+https://www.pythonmorsels.com/screencasts/properties/
+    @property
+    def location(self):
+        return self._location
+    @location.setter
+    def location(self, location):
+        self._location = location
+        self.past_locations.append(location)
+
+    trey = Person("Trey", "San Diego")
+    trey.location
+    >'San Diego'
+    trey.location = "Portland"
+    trey.location
+    >'Portland'
 
 
 ########################
@@ -1344,3 +1411,7 @@ df.column.unique().tolist()
 
 ## flat groupped column names
 complete.columns = ['_'.join(col) if type(col)==tuple else col for col in complete.columns.values ]
+
+
+Useful resources:
+https://www.pythonmorsels.com/articles/
