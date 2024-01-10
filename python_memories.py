@@ -251,7 +251,76 @@ sys.getrecursionlimit()
 #### Function Decorators ####
 https://www.pythonmorsels.com/make-decorator/
 
+######################
+#### Method Types ####
+https://builtin.com/software-engineering-perspectives/python-cls
+Class: Code template for creating objects (like a blueprint to build a house)
+Instance: Is an object created using the constructor of the class
+     
 
+#STATIC METHODS
+# The main characteristic of a static method is that they can be called without instantiating the class. These methods are self-contained, meaning that they can’t access any other attribute or call any other method within that class.
+#CLASS METHODS
+# This can be called without having an instance of the class. They have the capability to access other methods and class attributes but no instance attributes. It can modify a class state that would apply across all the instances of the class. For example, it can modify a class variable that would be applicable to all instances. (MethodTypes.__dict__ to check that this happens ( it changes de class definition))
+#INSTANCE METHODS
+# This method can only be called if the class has been instantiated. Once an object of that class has been created, the instance method can be called and can access all the attributes of that class through the reserved word self. An instance method is capable of creating, getting and setting new instance attributes and calling other instance, class and static methods.
+#MULTIMETHODS 
+# Multimethod basically means a function that has multiple versions, distinguished by the type of the arguments.
+###
+class MethodTypes:
+
+    name = "Ragnar"
+
+    def instanceMethod(self):
+        # Creates an instance atribute through keyword self
+        self.lastname = "Lothbrock"
+        print(self.name)
+        print(self.lastname)
+
+    @classmethod
+    def classMethod(cls):
+        # Access a class atribute through keyword cls
+        cls.name = "Lagertha"
+        print(cls.name)
+
+    @staticmethod
+    def staticMethod():
+        print("This is a static method")
+
+# Creates an instance of the class
+m = MethodTypes()
+# Calls instance method
+m.instanceMethod()
+
+
+MethodTypes.classMethod()
+MethodTypes.staticMethod()
+#####
+from multimethod import multimethod
+
+class Range:
+
+    @multimethod
+    def __init__(self, start: int, stop: int, step: int):
+        self.start = start
+        self.stop = stop
+        self.step = step
+
+    @multimethod
+    def __init__(self, start: int, stop: int):
+        self.start = start
+        self.stop = stop
+        self.step = 1
+
+    @multimethod
+    def __init__(self, stop: int):
+        self.start = 0
+        self.stop = stop
+        self.step = 1
+
+    def __repr__(self):
+        return f"Range({self.start}, {self.stop}, {self.step})"
+###
 
 
 ####################################
