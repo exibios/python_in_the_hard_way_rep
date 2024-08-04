@@ -1484,3 +1484,22 @@ complete.columns = ['_'.join(col) if type(col)==tuple else col for col in comple
 
 Useful resources:
 https://www.pythonmorsels.com/articles/
+
+
+Libraries:
+
+itertools
+
+cycle: repeatedly loop through all given values indefinitely
+zip_longest: loop over multiple iterables at once, stopping at the longest one
+compress: select a specific pattern of values (e.g. get 2 skip 1)
+groupby: group consecutive equivalent items (the consecutive part makes it efficient but less useful)
+
+count: if while True and range had a baby (it's an infinite loop that counts upward)
+chain.from_iterable: lazily flatten a shallow iterable-of-iterables
+islice: get the first N things from any iterable (it allows start-stop-step but I usually only need stop)
+pairwise: spy on the next item as you loop (note that it stops on the second-to-last item)
+dropwhile: similar to the string lstrip method but for any iterable
+takewhile: similar to the string rstrip method but for any iterable
+batched: loop over an iterable's items in groups of N
+
