@@ -1503,3 +1503,11 @@ dropwhile: similar to the string lstrip method but for any iterable
 takewhile: similar to the string rstrip method but for any iterable
 batched: loop over an iterable's items in groups of N
 
+re
+
+re.search is for finding the first match within a string
+re.findall or re.finditer will find many matches of a pattern
+re.split is for splitting a string based on a regular expression
+Plus there's re.compile, re.fullmatch, and more
+
+re.VERBOSE flag for all complex-looking regular expressions in your code.
